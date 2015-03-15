@@ -1,0 +1,42 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=5135
+
+# Column Tags - Follow your tags in column-view
+
+## Overview
+
+This plugin aims to help you navigate through you code using
+[tags](http://ctags.sourceforge.net/). Vim already has good support for this.
+Having generated a tags file in your current working directory, if you move
+your cursor over a keyword while in command mode and press `CTRL-]`, you will
+navigate to the definition of the keyword within your project and pressing
+`CTRL-t` will take you back to where you came from.
+
+Using this plugin, the experience is very similar, but you can take advantage
+of Vim's support for multiple windows and a wide screen to maintain an overview
+of both the part of the code you navigated from and the part of the code that
+hosts the definition of you keyword. The final experience is reminiscent of the
+column-view of Mac's file manager program, Finder.
+
+![Column-view screenshot](http://cdn.osxdaily.com/wp-content/uploads/2010/02/mac-os-x-finder-column-view.JPG)
+
+To get started, you must create a tags file in the base folder of you project.
+Most developmnent environments come with *ctags* installed, so simply run:
+
+    cd <path-to-project>
+    ctags -R .
+
+While using the plugin, you will have up to 3 windows displayed as columns.
+
+With `CTRL-]`, you can follow the tag under the cursor in a new vertical split.
+If the number of existing columns is `g:max_columns` and the rightmost column
+is focused, the view will be shifted to the left before doing the vertical
+split. If you follow a tag from a column that is not rightmost, the new column
+will replace those that are to the right of the one that was in focus. The goal
+is to be able to view both the part of the code that executes a function or
+class and its definition at the same time.
+
+With `CTRL-t`, you can go back to where you were before following a tag. If the
+column under focus is not the leftmost, this simply means focusing on the
+column to the left. If the leftmost column was focused, the windows that got
+hidden by following tags and moving towards the right will start being
+revealed.
